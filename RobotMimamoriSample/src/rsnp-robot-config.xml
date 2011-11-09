@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>ロボットライブラリ環境設定ファイル</comment>
+
+	<!-- DownChannelServiceレスポンスタイムアウト（秒単位） -->
+	<!-- ここで設定した時間以内にDownChannelServiceレスポンスが来る必要がある。
+	　rsnp-service-config.xmlのself_timeoutより十分に長い時間を指定すること。 -->
+	<entry key="connect_timeout">1800</entry>
+
+    <!-- メッセージキュー挿入待ちタイムアウト（ミリ秒） -->
+	<entry key="queue_entry_timeout">30000</entry>
+    <!-- メッセージキューサイズ -->
+	<entry key="queue_entry_max">1000</entry>
+
+	<!-- プロファイル生成ファクトリ実装クラスの完全修飾クラス名 -->
+	<entry key="InvokerProfileFactory">com.fujitsu.rsi.client.profile.invoker.InvokerProfileFactory_impl</entry>
+	<entry key="AcceptorProfileFactory">sample.rsnp2x.multi.AcceptorProfileFactory_impl</entry>
+
+	<!-- コネクションタイムアウト 0=無制限 -->
+	<entry key="upchannel_connection_timeout">0</entry>
+	<entry key="downchannel_connection_timeout">0</entry>
+	
+</properties>

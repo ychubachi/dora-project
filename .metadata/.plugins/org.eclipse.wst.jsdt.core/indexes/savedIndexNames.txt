@@ -1,0 +1,6 @@
+INDEX VERSION 1.122+C:\Robot project PBL\workspace\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+3361999031.index
+939472296.index
+3047316622.index
+636550354.index
+261448072.index
