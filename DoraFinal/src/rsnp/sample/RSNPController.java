@@ -38,7 +38,7 @@ public class RSNPController {
 	//private static String epn = "http://localhost:8080/ServiceSample/services";
 	//private static String epn = "http://10.10.16.69:8080/ServiceSample/services";
 	//private static String epn = "http://192.168.137.179:8080/ServiceSample/services";
-	private static String epn = "http://192.168.1.6:8080/ServiceSample/services";
+	private static String epn = "http://collam.dip.jp:8080/ServiceSample2/services";
 	private static String robot_id = "rx7";
 	private static String password = "fd3s";
 

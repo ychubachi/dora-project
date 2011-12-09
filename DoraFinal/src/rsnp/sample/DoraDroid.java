@@ -217,27 +217,27 @@ public class DoraDroid extends Activity implements BTConnectable {
         
         //buttons to control NXT from this application. 
         //They are to test robot control w/o connecting to a web service.
-  //       Button button;
-		// button = (Button) findViewById(R.id.right_button);
-		// button.setOnClickListener(new View.OnClickListener() {
-		// 	public void onClick(View arg0) { updateMotorControl(20,0); }
-		// });
-		// button = (Button) findViewById(R.id.left_button);
-		// button.setOnClickListener(new View.OnClickListener() {
-		// 	public void onClick(View arg0) { updateMotorControl(0,20); }
-		// });
-		// button = (Button) findViewById(R.id.stop_button);
-		// button.setOnClickListener(new View.OnClickListener() {
-		// 	public void onClick(View arg0) {updateMotorControl(0,0);}
-		// });
-		// button = (Button) findViewById(R.id.forward_button);
-		// button.setOnClickListener(new View.OnClickListener() {
-		// 	public void onClick(View arg0) {updateMotorControl(20,20);}
-		// });
-		// button = (Button) findViewById(R.id.back_button);
-		// button.setOnClickListener(new View.OnClickListener() {
-		// 	public void onClick(View arg0) {updateMotorControl(-20,-20);}
-		// });
+         Button button;
+		 button = (Button) findViewById(R.id.right_button);
+		 button.setOnClickListener(new View.OnClickListener() {
+		 	public void onClick(View arg0) { updateMotorControl(0,20); }
+		 });
+		 button = (Button) findViewById(R.id.left_button);
+		 button.setOnClickListener(new View.OnClickListener() {
+		 	public void onClick(View arg0) { updateMotorControl(20,0); }
+		 });
+		 button = (Button) findViewById(R.id.stop_button);
+		 button.setOnClickListener(new View.OnClickListener() {
+		 	public void onClick(View arg0) {updateMotorControl(0,0);}
+		 });
+		 button = (Button) findViewById(R.id.forward_button);
+		 button.setOnClickListener(new View.OnClickListener() {
+		 	public void onClick(View arg0) {updateMotorControl(20,20);}
+		 });
+		 button = (Button) findViewById(R.id.back_button);
+		 button.setOnClickListener(new View.OnClickListener() {
+		 	public void onClick(View arg0) {updateMotorControl(-20,-20);}
+		 });
 		
 		reusableToast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
     }

@@ -21,27 +21,27 @@ import com.fujitsu.rsi.helper.MultimediaProfileHelper;
 import com.fujitsu.rsi.util.RESULT;
 
 /**
- * IMultimedia_profileã�®å®Ÿè£…ã‚¯ãƒ©ã‚¹
+ * IMultimedia_profileﾃ｣�ｽﾂｮﾃ･ﾂｮﾅｸﾃｨﾂ｣窶ｦﾃ｣窶堋ｯﾃ｣ﾆ陳ｩﾃ｣窶堋ｹ
  *
  */
 public class Multimedia_profile_impl extends MultimediaProfileBase {
 
-	/** ImageProvidorã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ */
+	/** ImageProvidorﾃ｣窶堋ｪﾃ｣ﾆ停�ﾃ｣窶堋ｸﾃ｣窶堋ｧﾃ｣窶堋ｯﾃ｣ﾆ塚�*/
 	private ImageProvidor imageProvidor;
 
 	/**
-	 * Multimedia_profile_implã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ§‹ç¯‰ã�™ã‚‹
+	 * Multimedia_profile_implﾃ｣窶堋ｪﾃ｣ﾆ停�ﾃ｣窶堋ｸﾃ｣窶堋ｧﾃ｣窶堋ｯﾃ｣ﾆ塚�｣窶壺�ﾃｦﾂｧ窶ｹﾃｧﾂｯ窶ｰﾃ｣�ｽ邃｢ﾃ｣窶壺�
 	 */
 	public Multimedia_profile_impl() {
 
-		// ObjectHolderã�‹ã‚‰å�–å¾—
+		// ObjectHolderﾃ｣�ｽ窶ｹﾃ｣窶壺�ﾃ･�ｽ窶禿･ﾂｾ窶�
 		imageProvidor = ObjectHolder.getInstance().get(
 				ImageProvidor.class.getName());
 		System.out.println(imageProvidor.getClass()+" imageProvider");
 	}
 
 	/*
-	 * (é�ž Javadoc)
+	 * (ﾃｩ�ｽﾅｾ Javadoc)
 	 *
 	 * @see
 	 * org.robotservices.v02.profile.acceptor.IMultimedia_profile#get_camera_image
@@ -53,9 +53,9 @@ public class Multimedia_profile_impl extends MultimediaProfileBase {
 		SimpleDateFormat sdf = new SimpleDateFormat(
 				"yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 		String time = sdf.format(new Date());
-		System.out.println("ç”»åƒ�å�–å¾—æ™‚é–“ï¼š" + time);
+		System.out.println("ﾃｧ窶敖ｻﾃ･ﾆ抵ｿｽﾃ･�ｽ窶禿･ﾂｾ窶氾ｦ邃｢窶堙ｩ窶凪�ﾃｯﾂｼﾅ｡" + time);
 		
-		// ç”»åƒ�ã‚’å�–å¾—
+		// ﾃｧ窶敖ｻﾃ･ﾆ抵ｿｽﾃ｣窶壺�ﾃ･�ｽ窶禿･ﾂｾ窶�
 		imageProvidor.takeImage();
 		while(imageProvidor.getSemaphore() == 0){
 			
@@ -72,7 +72,7 @@ public class Multimedia_profile_impl extends MultimediaProfileBase {
 		Ret_value ret = new Ret_value();
 		MultimediaProfileHelper helper = new MultimediaProfileHelper(ret);
 		helper.setResult(RESULT.SUCCESS.getResult());
-		helper.setDetail("å®Ÿè¡Œçµ�æžœ=æ­£å¸¸çµ‚äº†");
+		helper.setDetail("");
 		helper.setAttachedFile(af);
 		System.err.println("Multimedia_profile_impl:get_camera_image exit");
 		return ret;

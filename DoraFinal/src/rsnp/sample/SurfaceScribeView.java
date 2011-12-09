@@ -12,34 +12,34 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.graphics.Bitmap.CompressFormat;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.SurfaceHolder.Callback;
+import android.view.SurfaceView;
 
 /**
- * 落書きビュークラス
+ * 關ｽ譖ｸ縺阪ン繝･繝ｼ繧ｯ繝ｩ繧ｹ
  *
  */
 public class SurfaceScribeView extends SurfaceView implements ImageProvidor {
 
-	/** タッチの軌跡を格納するリスト */
+	/** 繧ｿ繝�メ縺ｮ霆瑚ｷ｡繧呈�邏阪☆繧九Μ繧ｹ繝�*/
 	private ArrayList<ArrayList<Point>> strokes = new ArrayList<ArrayList<Point>>();
-	/** 背景色 */
+	/** 閭梧勹濶ｲ */
 	private int backColor = Color.GRAY;
 
-	/** 描画排他用ロック */
+	/** 謠冗判謗剃ｻ也畑繝ｭ繝�け */
 	private ReentrantLock lock = new ReentrantLock();
-	/** オフスクリーン用ビットマップ */
+	/** 繧ｪ繝輔せ繧ｯ繝ｪ繝ｼ繝ｳ逕ｨ繝薙ャ繝医�繝�� */
 	private Bitmap osb;
-	/** オフスクリーン用キャンバス */
+	/** 繧ｪ繝輔せ繧ｯ繝ｪ繝ｼ繝ｳ逕ｨ繧ｭ繝｣繝ｳ繝舌せ */
 	private Canvas osc;
-	/** SurfaceView用コールバック */
+	/** SurfaceView逕ｨ繧ｳ繝ｼ繝ｫ繝舌ャ繧ｯ */
 	private Callback surfcb = new Callback() {
 		@Override
 		public void surfaceChanged(SurfaceHolder holder, int format, int width,
@@ -61,10 +61,10 @@ public class SurfaceScribeView extends SurfaceView implements ImageProvidor {
 	};
 
 	/**
-	 * 指定したパラメタでScribeViewオブジェクトを構築する
+	 * 謖�ｮ壹＠縺溘ヱ繝ｩ繝｡繧ｿ縺ｧScribeView繧ｪ繝悶ず繧ｧ繧ｯ繝医ｒ讒狗ｯ峨☆繧�
 	 *
 	 * @param context
-	 *            アプリケーションコンテキスト
+	 *            繧｢繝励Μ繧ｱ繝ｼ繧ｷ繝ｧ繝ｳ繧ｳ繝ｳ繝�く繧ｹ繝�
 	 */
 	public SurfaceScribeView(Context context) {
 		super(context);
@@ -77,7 +77,7 @@ public class SurfaceScribeView extends SurfaceView implements ImageProvidor {
 	}
 
 	/**
-	 * 描画ストロークを初期化する
+	 * 謠冗判繧ｹ繝医Ο繝ｼ繧ｯ繧貞�譛溷喧縺吶ｋ
 	 */
 	private void initStrokes() {
 
@@ -86,7 +86,7 @@ public class SurfaceScribeView extends SurfaceView implements ImageProvidor {
 	}
 
 	/**
-	 * 描画ストロークをクリアする
+	 * 謠冗判繧ｹ繝医Ο繝ｼ繧ｯ繧偵け繝ｪ繧｢縺吶ｋ
 	 */
 	public void clearStrokes() {
 
@@ -95,10 +95,10 @@ public class SurfaceScribeView extends SurfaceView implements ImageProvidor {
 	}
 
 	/**
-	 * 背景色を設定する
+	 * 閭梧勹濶ｲ繧定ｨｭ螳壹☆繧�
 	 *
 	 * @param color
-	 *            背景色
+	 *            閭梧勹濶ｲ
 	 */
 	public void setBackColor(int color) {
 
@@ -107,14 +107,14 @@ public class SurfaceScribeView extends SurfaceView implements ImageProvidor {
 	}
 
 	/**
-	 * 描画する
+	 * 謠冗判縺吶ｋ
 	 */
 	private void doDraw() {
 
 		Canvas canvas = getHolder().lockCanvas();
 		if (canvas != null) {
 			if (osc == null) {
-				// オフスクリーン生成
+				// 繧ｪ繝輔せ繧ｯ繝ｪ繝ｼ繝ｳ逕滓�
 				int width = getWidth();
 				int height = getHeight();
 				osb = Bitmap.createBitmap(width, height,
@@ -122,26 +122,26 @@ public class SurfaceScribeView extends SurfaceView implements ImageProvidor {
 				osc = new Canvas(osb);
 			}
 
-			// 描画するビットマップの競合制御
+			// 謠冗判縺吶ｋ繝薙ャ繝医�繝��縺ｮ遶ｶ蜷亥宛蠕｡
 			lock.lock();
 			try {
-				// オフスクリーンに描画
+				// 繧ｪ繝輔せ繧ｯ繝ｪ繝ｼ繝ｳ縺ｫ謠冗判
 				doRender(osc);
 			} finally {
 				lock.unlock();
 			}
 
-			// 画面へ描画
+			// 逕ｻ髱｢縺ｸ謠冗判
 			canvas.drawBitmap(osb, 0, 0, null);
 			getHolder().unlockCanvasAndPost(canvas);
 		}
 	}
 
 	/**
-	 * パラメタで指定されたキャンバスに描画する。
+	 * 繝代Λ繝｡繧ｿ縺ｧ謖�ｮ壹＆繧後◆繧ｭ繝｣繝ｳ繝舌せ縺ｫ謠冗判縺吶ｋ縲�
 	 *
 	 * @param canvas
-	 *            描画するキャンバス
+	 *            謠冗判縺吶ｋ繧ｭ繝｣繝ｳ繝舌せ
 	 */
 	private void doRender(Canvas canvas) {
 
@@ -164,7 +164,7 @@ public class SurfaceScribeView extends SurfaceView implements ImageProvidor {
 	}
 
 	/*
-	 * (非 Javadoc)
+	 * (髱�Javadoc)
 	 *
 	 * @see android.view.View#onTouchEvent(android.view.MotionEvent)
 	 */
@@ -183,11 +183,11 @@ public class SurfaceScribeView extends SurfaceView implements ImageProvidor {
 	}
 
 	/**
-	 * 画像データを指定された形式のバイト配列で取得する （PNG/JPEGのみ）
+	 * 逕ｻ蜒上ョ繝ｼ繧ｿ繧呈欠螳壹＆繧後◆蠖｢蠑上�繝舌う繝磯�蛻励〒蜿門ｾ励☆繧���NG/JPEG縺ｮ縺ｿ��
 	 *
 	 * @param type
-	 *            画像フォーマット
-	 * @return 画像のバイト配列
+	 *            逕ｻ蜒上ヵ繧ｩ繝ｼ繝槭ャ繝�
+	 * @return 逕ｻ蜒上�繝舌う繝磯�蛻�
 	 */
 	@Override
 	public byte[] getImage(String type) {
@@ -212,5 +212,16 @@ public class SurfaceScribeView extends SurfaceView implements ImageProvidor {
 
 		byte[] bytes = out.toByteArray();
 		return bytes;
+	}
+	
+	public void takeImage() {
+		
+	}
+
+	public int getSemaphore(){
+		return 0;
+	}
+	public void setSemaphore(int semaphore){
+		
 	}
 }
